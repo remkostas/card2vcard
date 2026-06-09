@@ -1,0 +1,18 @@
+gradio==4.44.1
+openai==1.51.0
+pydantic==2.9.2
+qrcode==7.4.2
+pillow==10.4.0
+python-dotenv==1.0.1
+pyairtable==2.3.3
+pytest==8.3.3
+vobject==0.9.7
+
+# Pinning these too. Newer versions of each one quietly broke at runtime with this
+# gradio/openai combo: huggingface_hub dropped HfFolder, fastapi+starlette broke
+# template rendering, and httpx removed the proxies arg that openai 1.51 still uses.
+huggingface_hub==0.25.2
+fastapi==0.112.4
+starlette==0.38.6
+jinja2==3.1.4
+httpx==0.27.2
