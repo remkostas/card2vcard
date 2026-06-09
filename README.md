@@ -27,54 +27,6 @@ Built with GPT-4o vision, Gradio, and Airtable. Runs on Hugging Face Spaces.
 
 Images are never stored. Only the extracted contact fields are saved.
 
----
-
-## Local setup
-
-Requires **Python 3.11** (the version Hugging Face Spaces runs). Newer Python
-versions can pull incompatible wheels, so stick to 3.11 for a reproducible build.
-
-### Windows (PowerShell) quick start
-
-```powershell
-# one-time: create the venv and install pinned deps
-.\setup.ps1
-
-# real extraction (key stays in this session only, never written to disk):
-$env:OPENAI_API_KEY = "sk-...your key..."
-.\run.ps1
-
-# or, keyless test mode (fixed sample contact, no API call):
-.\run.ps1
-```
-
-Then open **http://127.0.0.1:7860**. Use `127.0.0.1`, **not** `localhost`.
-Gradio binds IPv4 only, and `localhost` may resolve to IPv6 (`::1`) and fail to connect.
-
-### Manual / cross-platform
-
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate        # Windows: .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-export OCR_BACKEND=mock           # keyless test mode, or set OPENAI_API_KEY for real
-python app/app.py
-```
-
-### Test without an API key
-
-Set `OCR_BACKEND=mock` to run the full pipeline with a hardcoded sample contact,
-no OpenAI key needed. Useful for verifying the UI, `.vcf`, and QR without spending credits.
-
-### Handling your API key safely
-
-- **Never commit a key.** `.env` is already in `.gitignore`; keep it that way.
-- **Locally**, prefer setting `OPENAI_API_KEY` in your shell session (as above) so it
-  never touches disk. A `.env` file works too but sits in plaintext.
-- **On Hugging Face**, add the key as a **Space secret** (Settings → Variables and
-  secrets), never as a file in the repo.
-
----
 
 ## Environment variables
 
